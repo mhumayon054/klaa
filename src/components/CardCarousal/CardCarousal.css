@@ -1,0 +1,78 @@
+.carousel-container {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.slick-slide {
+    padding: 0 10px; /* This adds 5px padding on each side for a total of 10px gap */
+}
+
+.card {
+    border: none !important;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-container {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.caption-section {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+
+.text-col {
+    display: flex;
+    text-align: left;
+    width: 60%;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cart-btn button {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 12px;
+    background-color: black;
+    color: white;
+    padding: 10px 16px;
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: 110px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+.slick-dots li button:before {
+    font-size: 16px; /* Adjust this value to make the dots larger */
+    color: #000; /* Change the color if needed */
+  }
+  
+  /* You can also control the spacing between dots */
+  .slick-dots li {
+    margin: 0 10px; /* Adjust the spacing between dots */
+  }
+  .slick-next,
+  .slick-prev{
+    display: none !important;
+  }
