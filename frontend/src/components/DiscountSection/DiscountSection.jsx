@@ -59,12 +59,18 @@ const Wrapper = styled.div`
     width: 95%;
     justify-content: center;
     margin-top: 20px;
+
+    
   }
 
   .discounted-cards {
     gap: 20px;
     width: 100%;
     display: flex;
+    @media screen and (max-width:768px) {
+      display: flex;
+      flex-direction: column;
+    }
 
     .card {
       border: none;
@@ -78,8 +84,12 @@ const Wrapper = styled.div`
 
       .image-container {
         width: 100%;
-        max-height: 500px;
-        position: relative; /* Added to contain absolute positioning of images */
+        height: 500px;
+        position: relative; 
+
+        @media screen and (max-width:768px) {
+          height: 550px;
+        }
       }
 
       .image {

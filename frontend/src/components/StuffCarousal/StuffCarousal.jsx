@@ -1,9 +1,13 @@
-import React from 'react'
-import styled from 'styled-components'
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import React from 'react';
+import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
+import { Pagination, Autoplay } from 'swiper';
+
+// Sample image data
 const ImageData = [
   {
     id: 1,
@@ -75,67 +79,59 @@ const Wrapper = styled.div`
     object-fit: cover; /* Ensure the image covers the entire container */
   }
 
-  .slick-slide {
-    padding: 0 2px; 
-  }
-
-  .slick-list {
-    margin: 0 -10px; /* Remove extra margin for first and last images */
-  }
-
   @media (max-width: 1024px) {
     .image-container {
-      height: 250px; /* Adjust height for medium screens */
+      height: 400px; /* Adjust height for medium screens */
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .image-container {
-      height: 200px; /* Adjust height for smaller screens */
+      height: 300px; /* Adjust height for tablet screens */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .image-container {
+      height: 200px; /* Adjust height for small screens */
     }
   }
 `;
-
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 600,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  autoplay: false,
-  autoplaySpeed: 2000,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2, // Show 2 images on medium screens
-        slidesToScroll: 2,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1, // Show 1 image on small screens
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
 
 const StuffCarousal = () => {
   return (
     <Wrapper>
       <div className="img-carousal-container">
         <div className="img-container-parent">
-          <Slider {...settings}>
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={10}
+            slidesPerView={3}
+            autoplay={{ delay: 2000 }}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              1150: {
+                slidesPerView: 3, // Show 3 slides for large screens
+              },
+              950: {
+                slidesPerView: 2, // Show 2 slides for medium screens
+              },
+              768: {
+                slidesPerView: 2, // Show 2 slides for tablet
+              },
+              480: {
+                slidesPerView: 1, // Show 1 slide for mobile
+              },
+            }}
+          >
             {ImageData.map((img) => (
-              <div key={img.id} className="card">
+              <SwiperSlide key={img.id} className="card">
                 <div className="image-container">
                   <img src={img.image} alt="" />
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </Slider>
+          </Swiper>
         </div>
       </div>
     </Wrapper>

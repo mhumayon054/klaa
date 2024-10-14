@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import styled from 'styled-components';
+import Sidebar from '../Sidebar/Sidebar';
 
 const DropdownWrapper = styled.div`
   display: flex;
   gap: 25px;
+
+
+  @media screen and (max-width:768px) {
+    display: none;
+  } 
 
   .btn {
     --bs-btn-font-size: 12px;
@@ -62,10 +68,10 @@ const dropdownData = [
     id: 1,
     title: 'KLAA FESTIVAL',
     items: [
-      { href: '#/action-1', label: 'Embellished dupattas' },
-      { href: '#/action-2', label: 'Saree' },
-      { href: '#/action-3', label: 'Lehnga ' },
-      { href: '#/action-3', label: 'Two pc' },
+      { href: '/', label: 'Embellished dupattas' },
+      { href: '/', label: 'Saree' },
+      { href: '/', label: 'Lehnga ' },
+      { href: '/', label: 'Two pc' },
     ],
   },
   {
@@ -77,58 +83,53 @@ const dropdownData = [
        
        
       
-      { href: '#/action-2', label: 'Denim jackets ' },
-      { href: '#/action-3', label: 'Sweat shirts' },
-      { href: '#/action-4', label: 'Coats' },
+      { href: '/', label: 'Denim jackets ' },
+      { href: '/', label: 'Sweat shirts' },
+      { href: '/', label: 'Coats' },
     ],
   },
   {
     id: 3,
     title: 'GOOD TO GO',
     items: [
-      { href: '#/action-1', label: '2 pc' },
-      { href: '#/action-2', label: '3 pc' },
-      { href: '#/action-3', label: 'T shirts' },
-      { href: '#/action-4', label: 'Track suits' },
-      { href: '#/action-5', label: 'Caps ' },
+      { href: '/', label: '2 pc' },
+      { href: '/', label: '3 pc' },
+      { href: '/', label: 'T shirts' },
+      { href: '/', label: 'Track suits' },
+      { href: '/', label: 'Caps ' },
     ],
   },
   {
     id: 4,
     title: 'LUXURY ONE',
     items: [
-      { href: '#/action-1', label: 'Embellished dupattas' },
-      { href: '#/action-2', label: 'Saree' },
-      { href: '#/action-3', label: 'Lehnga ' },
-      { href: '#/action-3', label: 'Two pc' },
+      { href: '/', label: 'Embellished dupattas' },
+      { href: '/', label: 'Saree' },
+      { href: '/', label: 'Lehnga ' },
+      { href: '/', label: 'Two pc' },
     ],
   },
   {
     id: 5,
     title: "MEN'S WEAR",
     items: [
-      { href: '#/action-1', label: 'jeans' },
-      { href: '#/action-2', label: 'polo shirts' },
-      { href: '#/action-3', label: 't shirts' },
-      { href: '#/action-3', label: 'dress shirts' },
-      { href: '#/action-3', label: 'belts' },
-      { href: '#/action-3', label: 'caps' },     
+      { href: '/', label: 'jeans' },
+      { href: '/', label: 'polo shirts' },
+      { href: '/', label: 't shirts' },
+      { href: '/', label: 'dress shirts' },
+      { href: '/', label: 'belts' },
+      { href: '/', label: 'caps' },     
     ],
   },
   {
     id: 6,
     title: "KID'S WEAR",
     items: [
-       
-      
-       
-       
-      
-      { href: '#/action-1', label: 'two pc' },
-      { href: '#/action-2', label: 'jackets' },
-      { href: '#/action-3', label: 'caps ' },
-      { href: '#/action-3', label: '3pc' },
-      { href: '#/action-3', label: 'Jeans' },
+      { href: '/', label: 'two pc' },
+      { href: '/', label: 'jackets' },
+      { href: '/', label: 'caps ' },
+      { href: '/', label: '3pc' },
+      { href: '/', label: 'Jeans' },
     ],
   },
 ];
@@ -145,6 +146,7 @@ function DropDownBtn() {
   };
 
   return (
+    <>
     <DropdownWrapper>
       {dropdownData.map((dropdown) => (
         <Dropdown
@@ -167,6 +169,7 @@ function DropDownBtn() {
         </Dropdown>
       ))}
     </DropdownWrapper>
+    </>
   );
 }
 

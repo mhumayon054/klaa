@@ -59,7 +59,6 @@ const Wrapper = styled.div`
 
   .image-container {
     width: 100%;
-    height: 640px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -99,7 +98,7 @@ const settings = {
   speed: 600,
   slidesToShow: 3,
   slidesToScroll: 3,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 2000,
   responsive: [
     {
@@ -127,7 +126,7 @@ const ImgCarousal = () => {
           <Slider {...settings}>
             {ImageData.map((img) => (
               <div key={img.id} className="card">
-                <div className="image-container">
+                <div className="image-container" style={{height:"500px"}}>
                   <img src={img.image} alt="" />
                 </div>
               </div>

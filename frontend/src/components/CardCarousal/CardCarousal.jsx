@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,7 +8,7 @@ import first from "../../assets/first.png";
 import fourth from "../../assets/fourth.png";
 import fifth from "../../assets/fifth.png";
 import eight from "../../assets/eight.png";
-import twelve from "../../assets/twelve.png";
+import twelfth from "../../assets/twelve.png";
 import ninth from "../../assets/ninth.png";
 import seventh from "../../assets/seventh.png";
 import sixth from "../../assets/sixth.png";
@@ -51,7 +51,7 @@ const cardData = [
   },
   {
     id: 6,
-    image: twelve,
+    image: twelfth,
     title: "Towards Honesty",
     description: "COTTON FABRIC",
     price: "1499",
@@ -73,18 +73,30 @@ const cardData = [
 ];
 
 const CardCarousal = () => {
-  const { addToCart } = useContext(CartContext); // Access addToCart from CartContext
+  const { addToCart } = useContext(CartContext);
+  
+  const [addedItem, setAddedItem] = useState(null);
+
+  const handleAddToCart = (card) => {
+    addToCart(card);
+    setAddedItem(card.id); // Set the added item ID to show the button animation
+
+    // Reset the state after 2 seconds
+    setTimeout(() => {
+      setAddedItem(null);
+    }, 2000);
+  };
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 600,
-    autoplay: true,
+    autoplay: false,
     slidesToShow: 4,
     slidesToScroll: 4,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1150,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -133,7 +145,14 @@ const CardCarousal = () => {
                 </p>
               </div>
               <div className="cart-btn">
-                <button onClick={() => addToCart(card)}>ADD TO CART</button>
+                <button onClick={() => handleAddToCart(card)}>
+                  <span className={`button-text ${addedItem === card.id ? 'fade-out' : ''}`}>
+                    ADD TO CART
+                  </span>
+                  <span className={`added-text ${addedItem === card.id ? 'slide-down' : ''}`}>
+                    Added
+                  </span>
+                </button>
               </div>
             </div>
           </div>

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { IoMdSearch } from "react-icons/io";
-import { FaUser } from "react-icons/fa";
+import cart from "../../assets/cart.svg"
 import { GiFlowers } from "react-icons/gi";
 import DropDownBtn from "../DropDownBtn/DropDownBtn";
-import CartPopUp from '../CartPopUp/CartPopUp'; // Import the CartPopUp component
-import UserPopup from '../UserPopup/UserPopup'; // Import UserPopup
-import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
-
+import CartPopUp from '../CartPopUp/CartPopUp'; 
+import UserPopup from '../UserPopup/UserPopup'; 
+import { useNavigate } from "react-router-dom"; 
+import Sidebar from "../Sidebar/Sidebar";
 
 const Container = styled.div`
   display: flex;
@@ -26,8 +25,12 @@ const Column1 = styled.div`
   p {
     padding: 10px 15px;
     font-size: 15px;
-  }`
-;
+
+    @media (max-width: 768px) {
+      font-size: 12px; /* Smaller font for mobile */
+    }
+  }
+`;
 
 const Column2 = styled.div`
   flex: 1;
@@ -36,11 +39,39 @@ const Column2 = styled.div`
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid lightgrey;
+  .sidebar{
+   @media screen and (max-width: 768px){
+    display: flex;
+  }
+   @media screen and (min-width: 769px){
+    display: none;
+  }
+
+}
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack elements vertically on mobile */
+    align-items: flex-start;
+  }
 
   .section1 {
     width: 30%;
     display: flex;
     align-items: center;
+
+    @media screen and (max-width:600px){
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+    }
+    @media screen and (min-width:601px) and (max-width:768px){
+      width: 100%;
+        display: flex;
+        padding: 10px 0px;
+        justify-content: center;
+    }
+
     button {
       color: black;
       background-color: white;
@@ -48,28 +79,59 @@ const Column2 = styled.div`
       padding: 8px 0px;
       border: none;
       letter-spacing: 2px;
+      font-size: 14px; /* Default font size */
+      
+      /* @media (max-width: 768px) {
+        width: 100%; 
+        padding: 10px 0; 
+        font-size: 12px; 
+      } */
+      
+      @media screen and (min-width:601px) and (max-width: 768px) {
+        width: 35%;
+        padding: 10px 0; 
+        font-size: 12px; 
+      }
     }
+
     button:hover {
       p {
         transition: transform 0.3s ease-in-out;
         transform: scale(1.1);
-      } 
+      }
     }
   }
+
   .section2 {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 30%;
+    
+    h1{
+      margin-bottom: 0px !important;
+    }
+    @media (max-width: 768px) {
+      width: 100%; 
+      justify-content: center;
+      padding: 10px 0px;
+    }
   }
+
   .section3 {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 30%;
     gap: 15px;
-  }`
-;
+
+    @media (max-width: 768px) {
+      width: 100%; 
+      padding: 10px 0px;
+      justify-content: space-between; 
+    }
+  }
+`;
 
 const Column3 = styled.div`
   flex: 1;
@@ -77,31 +139,38 @@ const Column3 = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px 30px;
+
   ul {
     display: flex;
     list-style: none;
     gap: 25px;
+
     li {
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
+      
+      @media (max-width: 768px) {
+        font-size: 10px; /* Smaller font for mobile */
+      }
     }
   }
 `;
+
+
 const Navbar = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isUserPopupOpen, setIsUserPopupOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]); // Add state for cart items
+  const [cartItems, setCartItems] = useState([]);
 
-  // Function to handle opening the cart popup
   const handleCartToggle = () => {
     setIsCartOpen(prev => !prev);
   };
 
   const handleUserIconClick = () => {
-    setIsUserPopupOpen(false); // Close UserPopup
-    navigate("/checkout"); // Navigate to /checkout page
+    setIsUserPopupOpen(false);
+    navigate("/checkout");
   };
 
   const handleClosePopup = () => {
@@ -117,9 +186,7 @@ const Navbar = () => {
 
       <Column2>
         <div className="section1">
-          <button
-            style={{ color: "white", background: "black", border: "none" }}
-          >
+          <button style={{ color: "white", background: "black", border: "none" }}>
             <p>LUXURY</p>
           </button>
           <button><p>ESSENTIAL</p></button>
@@ -129,8 +196,14 @@ const Navbar = () => {
           <GiFlowers size={30} />
         </div>
         <div className="section3">
-          <IoMdSearch size={20} onClick={handleCartToggle} />
-          <FaUser size={15} onClick={handleUserIconClick} /> {/* Update this line */}
+          <div className="sidebar">
+          <Sidebar />
+          </div>
+          <div className="navbar-icons"  onClick={handleUserIconClick}>
+            <button style={{ color: "white", background: "black", border: "none", padding:"8px 0px", color: "white",background: "black",border: "none",fontSize: "14px",padding: "8px 10px",letterSpacing: "1px"}}>Cart
+          <img src={cart} alt="cart" style={{width:"20px", marginLeft:"5px"}}/>
+          </button>
+        </div>
         </div>
       </Column2>
 
@@ -138,21 +211,19 @@ const Navbar = () => {
         <DropDownBtn />
       </Column3>
 
-      {/* Render CartPopUp if the popup is open */}
       {isCartOpen && (
         <CartPopUp 
           isOpen={isCartOpen} 
           onClose={handleCartToggle} 
-          items={cartItems} // Pass cart items
+          items={cartItems} 
         />
       )}
 
-      {/* Render UserPopup if the popup is open */}
       {isUserPopupOpen && (
         <UserPopup 
           isOpen={isUserPopupOpen} 
           onClose={handleClosePopup} 
-          products={cartItems} // Pass cart items to UserPopup if needed
+          products={cartItems} 
         />
       )}
     </Container>

@@ -5,12 +5,12 @@ import outfits from '../../assets/outfits.webp';
 import staller from '../../assets/staller.webp';
 import palette from '../../assets/palette.webp';
 import "bootstrap/dist/css/bootstrap.css";
-import 'bootstrap/dist/js/bootstrap.bundle.min'; // Import Bootstrap JS
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const MainCarousel = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-      <div id="carouselExampleInterval" style={{ width: "100%", height: "700px", overflow: "hidden" }} className="carousel slide" data-bs-ride="carousel">
+      <div id="carouselExampleInterval" style={{ width: "100%",  overflow: "hidden" }} className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner" style={{ height: "100%" }}>
           <div className="carousel-item active" data-bs-interval="10000">
             <img src={beige} className="d-block w-100" alt="..." style={{ height: "100%", objectFit: "cover" }} />

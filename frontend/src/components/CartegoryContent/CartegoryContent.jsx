@@ -22,15 +22,29 @@ const Wrapper=styled.div`
   }
 
   .img-container{
-    height: 600px;
     width: 100%;
     display: flex;
-    gap: 10px;
+
+
+    @media screen and (max-width:430px){
+      display: flex;
+      flex-direction: column;
+    }
+    @media screen and (max-width:1024px){
+      display: flex;
+      flex-direction: column;
+    }
   }
   .img-container img{
     height: 100%;
-    width: 100%;
+    width: 50%;
     object-fit: cover;
+    padding: 0px 10px;
+
+    @media screen and (max-width:1024px){
+      width: 100%;
+      padding: 10px 0px;
+    }
   }
 `
 const CartegoryContent = () => {

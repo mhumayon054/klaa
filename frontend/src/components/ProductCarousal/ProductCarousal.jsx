@@ -72,6 +72,10 @@ const ProductWrapper = styled.div`
       font-size: 30px;
       font-weight: 500;
       text-align: center;
+
+      @media screen and (max-width:430px ) {
+        font-size: 20px ;
+      }
     }
   }
 
